@@ -35,3 +35,16 @@ If you like or are using this project to learn or start your solution, please gi
         }
     }
 ```    
+
+## Use
+
+```csharp
+
+Dictionary<Guid, string> _guidStringCache = new Dictionary<Guid, string>()
+{
+    { guidKey, "Hello World from Cache" }
+};
+            
+Console.WriteLine(_guidStringCache.FromCacheOrService(() => "Hello World", Guid.NewGuid()));
+
+```
