@@ -1,6 +1,6 @@
 # FromCacheOrService Extension Method
 
-An example of how you can save yourself for writing extra code when implementing simple caching in your applications
+An example of how you can save yourself from writing extra code when implementing simple caching in your applications
 
 ## Give a Star! :star:
 
