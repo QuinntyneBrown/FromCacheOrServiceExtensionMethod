@@ -21,27 +21,27 @@ namespace FromCacheOrServiceExtensionMethod
             
             Dictionary<Guid, string> _guidStringCache = new Dictionary<Guid, string>()
             {
-                { guidKey, "Hello World from Cache" }
+
             };
 
             Dictionary<Tuple<DayOfWeek, Guid>, string> _tupleStringCache = new Dictionary<Tuple<DayOfWeek,Guid>, string>()
             {
-                { tupleKey, "Hello World from Tuple Cache" }
+
             };
 
-            Console.WriteLine(_guidStringCache.FromCacheOrService(() => "Hello World", guidKey));
+            Console.WriteLine(_guidStringCache.FromCacheOrService(() => $"Hello World at {DateTime.UtcNow.Millisecond}", guidKey));
 
-            Console.WriteLine(_guidStringCache.FromCacheOrService(() => "Hello World", Guid.NewGuid()));
+            Console.WriteLine(_guidStringCache.FromCacheOrService(() => $"Hello World at {DateTime.UtcNow.Millisecond}", guidKey));
 
-            Console.WriteLine(_tupleStringCache.FromCacheOrService(() => GetSomethingByParameter("Something"), new Tuple<DayOfWeek, Guid>(DayOfWeek.Monday, guidKey)));
+            Console.WriteLine(_tupleStringCache.FromCacheOrService(() => GetSomethingByParameter("Something"), tupleKey));
 
-            Console.WriteLine(_tupleStringCache.FromCacheOrService(() => GetSomethingByParameter("Something"), new Tuple<DayOfWeek, Guid>(DayOfWeek.Monday, Guid.NewGuid())));
+            Console.WriteLine(_tupleStringCache.FromCacheOrService(() => GetSomethingByParameter("Something"), tupleKey));
 
             Console.ReadLine();
         }
 
         public static string GetSomethingByParameter(string param)
-            => $"Hello World By {param} parameter";
+            => $"Hello World By {param} parameter at {DateTime.UtcNow.Millisecond}";
     }
 
     public static class DictionaryExtensions
