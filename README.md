@@ -40,11 +40,14 @@ If you like or are using this project to learn or start your solution, please gi
 
 ```csharp
 
-Dictionary<Guid, string> _guidStringCache = new Dictionary<Guid, string>()
-{
-    { guidKey, "Hello World from Cache" }
-};
+var key = Guid.NewGuid();
+
+Dictionary<Guid, string> _cache = new Dictionary<Guid, string>() { };
+
+// Both outputs are identical as the second output is pulled from the cache
             
-Console.WriteLine(_guidStringCache.FromCacheOrService(() => "Hello World", guidKey));
+Console.WriteLine(_cache.FromCacheOrService(() => $"Hello World at {DateTime.UtcNow.Millisecond}", key));
+
+Console.WriteLine(_cache.FromCacheOrService(() => $"Hello World at {DateTime.UtcNow.Millisecond}", key));
 
 ```
