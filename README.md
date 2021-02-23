@@ -42,7 +42,7 @@ If you like or are using this project to learn or start your solution, please gi
 
 var key = Guid.NewGuid();
 
-Dictionary<Guid, string> _cache = new Dictionary<Guid, string>() { };
+Dictionary<Guid, string> _cache = new();
 
 // Both outputs are identical as the second output is pulled from the cache
             
