@@ -4,31 +4,15 @@ using System.Threading.Tasks;
 
 namespace FromCacheOrServiceExtensionMethod
 {
-    enum DayOfWeek
-    {
-        Monday,
-        Tuesday,
-        Wednesday,
-        Thursday,
-        Friday
-    }
     class Program
     {
         static void Main(string[] args)
         {
             var guidKey = Guid.NewGuid();
             var tupleKey = new Tuple<DayOfWeek, Guid>(DayOfWeek.Monday, guidKey);
+            Dictionary<Guid, string> _guidStringCache = new();
+            Dictionary<Tuple<DayOfWeek, Guid>, string> _tupleStringCache = new();
             
-            Dictionary<Guid, string> _guidStringCache = new Dictionary<Guid, string>()
-            {
-
-            };
-
-            Dictionary<Tuple<DayOfWeek, Guid>, string> _tupleStringCache = new Dictionary<Tuple<DayOfWeek,Guid>, string>()
-            {
-
-            };
-
             Console.WriteLine(_guidStringCache.FromCacheOrService(() => $"Hello World at {DateTime.UtcNow.Millisecond}", guidKey));
 
             Console.WriteLine(_guidStringCache.FromCacheOrService(() => $"Hello World at {DateTime.UtcNow.Millisecond}", guidKey));
@@ -67,5 +51,14 @@ namespace FromCacheOrServiceExtensionMethod
             }
             return cached;
         }
+    }
+
+    enum DayOfWeek
+    {
+        Monday,
+        Tuesday,
+        Wednesday,
+        Thursday,
+        Friday
     }
 }
